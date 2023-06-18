@@ -8,14 +8,26 @@ class App extends Component {
 
   state = {
     todos: [
-      { id: 'id-1', text: 'Выучить основы React', completed: false },
+      { id: 'id-1', text: 'Выучить основы React', completed: true },
       { id: 'id-2', text: 'Разобраться с React Route', completed: false },
       { id: 'id-3', text: 'Понять Redux', completed: false },
     ],
   };
 
+  deleteTodo = (todoId) => {
+    this.setState(prevState => ({
+      todos: prevState.todos.filter(todo => todo.id !== todoId),
+    }))
+  }
+
   render() {
     const { todos } = this.state;
+
+    const totalTodoCounts = todos.length;
+
+    const complitedTodosCounts = todos.reduce((acc, todo) => 
+    (todo.completed ? acc + 1 : acc),
+     0);
     
     return (
       <>
@@ -23,7 +35,11 @@ class App extends Component {
       {/* <Dropdown /> */}
       {/* <ColorPicker options={colorPickerOptions} /> */}
       {/* <Counter /> */}
-      <TodoList todos= {todos}/>
+      <TodoList todos= {todos} onDeleteTodo={this.deleteTodo}/>
+      <div>
+        <p>Total amount: {totalTodoCounts};</p>
+        <p>Amount done: {complitedTodosCounts};</p>
+      </div>
       </>
 
     )
