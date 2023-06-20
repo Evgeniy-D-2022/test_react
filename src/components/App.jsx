@@ -2,17 +2,26 @@ import React, { Component } from "react";
 // import ColorPicker from "./ColorPicker";
 // import Counter from './Counter/Counter'
 // import Dropdown from "./Dropdown/Dropdown";
-import TodoList from './TodoList';
+// import TodoList from './TodoList';
+// import initialTodos from './todos.json';
+import Form from "./Form/Form";
 
 class App extends Component {
 
   state = {
-    todos: [
-      { id: 'id-1', text: 'Выучить основы React', completed: true },
-      { id: 'id-2', text: 'Разобраться с React Route', completed: false },
-      { id: 'id-3', text: 'Понять Redux', completed: false },
-    ],
+    // todos: initialTodos,
+
+    // todos: [
+    //   { id: 'id-1', text: 'Выучить основы React', completed: true },
+    //   { id: 'id-2', text: 'Разобраться с React Route', completed: false },
+    //   { id: 'id-3', text: 'Понять Redux', completed: false },
+    // ],
+
   };
+
+  formSubmitHandler = data => {
+    console.log(data);
+  }
 
   deleteTodo = (todoId) => {
     this.setState(prevState => ({
@@ -21,36 +30,29 @@ class App extends Component {
   }
 
   render() {
-    const { todos } = this.state;
-
-    const totalTodoCounts = todos.length;
-
-    const complitedTodosCounts = todos.reduce((acc, todo) => 
-    (todo.completed ? acc + 1 : acc),
-     0);
+    // const { todos } = this.state;
+    // const totalTodoCounts = todos.length;
+    // const complitedTodosCounts = todos.reduce((acc, todo) => 
+    // (todo.completed ? acc + 1 : acc), 0);
     
     return (
       <>
-      <h1>hi</h1>
+      < Form onSubmit={this.formSubmitHandler}/>
+     
+      {/* <h1>hi</h1> */}
       {/* <Dropdown /> */}
       {/* <ColorPicker options={colorPickerOptions} /> */}
       {/* <Counter /> */}
-      <TodoList todos= {todos} onDeleteTodo={this.deleteTodo}/>
+      {/* <TodoList todos= {todos} onDeleteTodo={this.deleteTodo}/>
       <div>
         <p>Total amount: {totalTodoCounts};</p>
         <p>Amount done: {complitedTodosCounts};</p>
-      </div>
+      </div> */}
       </>
 
     )
   }
 }
-
-// const App = () => {
-//   return (
-   
-//   );
-// };
 
 // const colorPickerOptions = [
 //   { label: 'red', color: '#F44336' },
